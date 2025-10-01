@@ -10,6 +10,7 @@
 #include "ChipConfig.h"
 #include "IO.h"
 #include "timer.h"
+#include "PWM.h"
 
 int main(void) {
     //Initialisation oscillateur
@@ -17,6 +18,11 @@ int main(void) {
     // Configuration des input et output (IO)
     InitIO();
     InitTimer1();
+    InitTimer23();
+    InitPWM();
+    //PWMSetSpeed(20,0);
+    //PWMSetSpeed(-20,1);// On constate que plus on augmente la vitesse plus la fréquence augmente
+  
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;
