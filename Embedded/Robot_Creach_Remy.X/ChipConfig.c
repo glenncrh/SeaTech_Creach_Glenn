@@ -1,4 +1,5 @@
 #include "ChipConfig.h"
+#include "main.h"
 
 // DSPIC33EP512MU814 Configuration Bit Settings
 

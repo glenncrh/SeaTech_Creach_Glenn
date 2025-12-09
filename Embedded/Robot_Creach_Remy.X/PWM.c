@@ -5,6 +5,7 @@
 #include <math.h>
 #include "ToolBox.h"
 #include "Robot.h"
+#include "main.h"
 
 void InitPWM(void) {
 PTCON2bits.PCLKDIV = 0b000; //Divide by 1
@@ -45,7 +46,7 @@ double talon = 50;
 //    }
 //    
 //}
-float acceleration=0.01;
+float acceleration=5;
 
 void PWMUpdateSpeed()
 {
