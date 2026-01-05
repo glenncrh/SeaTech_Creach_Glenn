@@ -20,7 +20,7 @@ void InitTimer1(void) {
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
     T1CONbits.TON = 1; // Enable Timer
-    SetFreqTimer1(50);
+    SetFreqTimer1(1000); // on augmente la fréquence des capteurs sinon entre deux images, le robot ne voit rien
 }
 //Interruption du timer 1
 unsigned char toggle = 0;

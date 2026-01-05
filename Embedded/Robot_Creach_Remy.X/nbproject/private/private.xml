@@ -9,7 +9,6 @@
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/IO.c</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/timer.h</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/Robot.h</file>
-            <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/Robot.c</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/PWM.c</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/PWM.h</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/Toolbox.c</file>
@@ -17,7 +16,8 @@
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/ADC.c</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/adc.h</file>
             <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/timer.c</file>
-            <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/UART.c</file>
+            <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/main.h</file>
+            <file>file:/C:/Github/SeaTech_Creach_Glenn/Embedded/Robot_Creach_Remy.X/Robot.c</file>
         </group>
     </open-files>
 </project-private>

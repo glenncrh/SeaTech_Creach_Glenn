@@ -31,6 +31,9 @@ void InitIO()
     _TRISA9 = 0; //led bleue 2
     _TRISA10 = 0; // les rouge 2
     _TRISA0 = 0; // les rouge 2
+    _TRISJ10 = 0; // PWM_EN
+    
+    //_TRISH1 = 0; //bouton
     
 
     
