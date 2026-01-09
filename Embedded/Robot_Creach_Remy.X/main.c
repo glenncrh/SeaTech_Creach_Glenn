@@ -23,13 +23,10 @@ unsigned char nextStateRobot = 0;
 /* ===================== MACHINE A ETATS ===================== */
 
 void OperatingSystemLoop(void) {
-    
-    if (BOUTON == 1) {
-    timestamp = 0;
-    stateRobot = STATE_AVANCE;
-    } else if (timestamp > 500) {
-    stateRobot = STATE_ARRET;
-}
+    if (stateRobot != STATE_ATTENTE && stateRobot != STATE_ATTENTE_EN_COURS && timestamp > 60000) {
+        stateRobot = STATE_ARRET;
+    }
+
     switch (stateRobot) {
 
         case STATE_ATTENTE:
@@ -40,8 +37,11 @@ void OperatingSystemLoop(void) {
             break;   // ? correction
 
         case STATE_ATTENTE_EN_COURS:
-            if (timestamp > 1000)
+            // ON NE DÉMARRE QUE SI ON APPUIE SUR LE BOUTON
+            if (BOUTON == 1) {
+                timestamp = 0;
                 stateRobot = STATE_AVANCE;
+            }
             break;
 
         case STATE_AVANCE:
@@ -111,11 +111,11 @@ void SetNextRobotStateInAutomaticMode() {
         positionObstacle = OBSTACLE_EN_FACE;
     else if (robotState.distanceTelemetreGauche < 25)
         positionObstacle = OBSTACLE_A_GAUCHE;
-    else if (robotState.distanceTelemetreExtremeGauche < 25)
+    else if (robotState.distanceTelemetreExtremeGauche < 15)
         positionObstacle = OBSTACLE_A_LEXTREME_GAUCHE;
     else if (robotState.distanceTelemetreDroit < 25)
         positionObstacle = OBSTACLE_A_DROITE;
-    else if (robotState.distanceTelemetreExtremeDroite < 25)
+    else if (robotState.distanceTelemetreExtremeDroite < 15)
         positionObstacle = OBSTACLE_A_LEXTREME_DROITE;
 
     // Choix de l'état suivant
@@ -128,9 +128,9 @@ void SetNextRobotStateInAutomaticMode() {
     else if (positionObstacle == OBSTACLE_EN_FACE)
         nextStateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE;
     else if (positionObstacle == OBSTACLE_A_LEXTREME_GAUCHE)
-        nextStateRobot = STATE_TOURNE_GAUCHE;
-    else if (positionObstacle == OBSTACLE_A_LEXTREME_DROITE)
         nextStateRobot = STATE_TOURNE_DROITE;
+    else if (positionObstacle == OBSTACLE_A_LEXTREME_DROITE)
+        nextStateRobot = STATE_TOURNE_GAUCHE;
 
     // Sécurité transition
     if (nextStateRobot != stateRobot - 1)
@@ -182,18 +182,18 @@ int main(void) {
             volts = ((float)result[2]) * 3.3 / 4096;
             robotState.distanceTelemetreDroit = 34 / volts - 5;
 
-            volts = ((float)result[3]) * 3.3 / 4096;
+            volts = ((float)result[4]) * 3.3 / 4096;
             robotState.distanceTelemetreExtremeGauche = 34 / volts - 5;
 
-            volts = ((float)result[4]) * 3.3 / 4096;
+            volts = ((float)result[3]) * 3.3 / 4096;
             robotState.distanceTelemetreExtremeDroite = 34 / volts - 5;
 
             // LEDs = détection brute
             LED_ROUGE_1   = (robotState.distanceTelemetreDroit < 30);
             LED_ORANGE_1  = (robotState.distanceTelemetreCentre < 30);
             LED_BLEUE_1   = (robotState.distanceTelemetreGauche < 30);
-            LED_VERTE_1   = (robotState.distanceTelemetreExtremeGauche < 30);
-            LED_BLANCHE_1 = (robotState.distanceTelemetreExtremeDroite < 30);
+            LED_VERTE_1   = (robotState.distanceTelemetreExtremeDroite < 30);
+            LED_BLANCHE_1 = (robotState.distanceTelemetreExtremeGauche < 30);
         }
 
         
