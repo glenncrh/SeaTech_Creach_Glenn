@@ -23,6 +23,13 @@ unsigned char nextStateRobot = 0;
 /* ===================== MACHINE A ETATS ===================== */
 
 void OperatingSystemLoop(void) {
+    
+    if (BOUTON == 1) {
+    timestamp = 0;
+    stateRobot = STATE_AVANCE;
+    } else if (timestamp > 500) {
+    stateRobot = STATE_ARRET;
+}
     switch (stateRobot) {
 
         case STATE_ATTENTE:
@@ -100,15 +107,15 @@ void SetNextRobotStateInAutomaticMode() {
     unsigned char positionObstacle = PAS_D_OBSTACLE;
 
     // Détection simple : 1 capteur = 1 obstacle
-    if (robotState.distanceTelemetreCentre < 30)
+    if (robotState.distanceTelemetreCentre < 25)
         positionObstacle = OBSTACLE_EN_FACE;
-    else if (robotState.distanceTelemetreGauche < 30)
+    else if (robotState.distanceTelemetreGauche < 25)
         positionObstacle = OBSTACLE_A_GAUCHE;
-    else if (robotState.distanceTelemetreExtremeGauche < 30)
+    else if (robotState.distanceTelemetreExtremeGauche < 25)
         positionObstacle = OBSTACLE_A_LEXTREME_GAUCHE;
-    else if (robotState.distanceTelemetreDroit < 30)
+    else if (robotState.distanceTelemetreDroit < 25)
         positionObstacle = OBSTACLE_A_DROITE;
-    else if (robotState.distanceTelemetreExtremeDroite < 30)
+    else if (robotState.distanceTelemetreExtremeDroite < 25)
         positionObstacle = OBSTACLE_A_LEXTREME_DROITE;
 
     // Choix de l'état suivant
@@ -121,9 +128,9 @@ void SetNextRobotStateInAutomaticMode() {
     else if (positionObstacle == OBSTACLE_EN_FACE)
         nextStateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE;
     else if (positionObstacle == OBSTACLE_A_LEXTREME_GAUCHE)
-        nextStateRobot = STATE_TOURNE_DROITE;
-    else if (positionObstacle == OBSTACLE_A_LEXTREME_DROITE)
         nextStateRobot = STATE_TOURNE_GAUCHE;
+    else if (positionObstacle == OBSTACLE_A_LEXTREME_DROITE)
+        nextStateRobot = STATE_TOURNE_DROITE;
 
     // Sécurité transition
     if (nextStateRobot != stateRobot - 1)

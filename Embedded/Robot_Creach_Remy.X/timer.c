@@ -91,10 +91,10 @@ void InitTimer4(void) {
     IFS1bits.T4IF = 0; // Clear interrupt flag
     IEC1bits.T4IE = 1; // Enable interrupt
 
-    SetFreqTimer4(1000); // 1000 Hz ? période = 1 ms
+     // 1000 Hz ? période = 1 ms
 
     T4CONbits.TON = 1; // Start timer 4
-
+    SetFreqTimer4(1000);
 
 }
 
@@ -119,10 +119,9 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
 
 
     IFS1bits.T4IF = 0; // Clear timer 4 interrupt flag
-
-    timestamp++; // Incrémentation toutes les 1 ms
-    OperatingSystemLoop();
     PWMUpdateSpeed();
-
+    timestamp+=1;
+     // Incrémentation toutes les 1 ms
+    OperatingSystemLoop();
 
 }

@@ -13,8 +13,7 @@
 #define LED_BLEUE_2 _LATA9
 #define LED_ROUGE_2 _LATA10
 #define PWM_ENABLE _LATJ10
-
-//#define BOUTON_RH1
+#define BOUTON _RH0
 
 // Prototypes fonctions
 void InitIO();
